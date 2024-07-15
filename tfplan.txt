@@ -1,0 +1,110 @@
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.cognitive_search_module.azurerm_search_service.search will be created
+  + resource "azurerm_search_service" "search" {
+      + customer_managed_key_enforcement_enabled = false
+      + hosting_mode                             = "default"
+      + id                                       = (known after apply)
+      + local_authentication_enabled             = true
+      + location                                 = "eastus"
+      + name                                     = (known after apply)
+      + partition_count                          = 1
+      + primary_key                              = (sensitive value)
+      + public_network_access_enabled            = true
+      + query_keys                               = (known after apply)
+      + replica_count                            = 1
+      + resource_group_name                      = "chirag"
+      + secondary_key                            = (sensitive value)
+      + sku                                      = "basic"
+    }
+
+  # module.cognitive_search_module.random_string.azurerm_search_service_name will be created
+  + resource "random_string" "azurerm_search_service_name" {
+      + id          = (known after apply)
+      + length      = 25
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = false
+      + numeric     = false
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+  # module.cognitive_services_module.azurerm_cognitive_account.cognitive_service will be created
+  + resource "azurerm_cognitive_account" "cognitive_service" {
+      + endpoint                           = (known after apply)
+      + id                                 = (known after apply)
+      + kind                               = "CognitiveServices"
+      + local_auth_enabled                 = true
+      + location                           = "eastus"
+      + name                               = (known after apply)
+      + outbound_network_access_restricted = false
+      + primary_access_key                 = (sensitive value)
+      + public_network_access_enabled      = true
+      + resource_group_name                = "chirag"
+      + secondary_access_key               = (sensitive value)
+      + sku_name                           = "S0"
+    }
+
+  # module.cognitive_services_module.random_string.azurerm_cognitive_account_name will be created
+  + resource "random_string" "azurerm_cognitive_account_name" {
+      + id          = (known after apply)
+      + length      = 13
+      + lower       = true
+      + min_lower   = 0
+      + min_numeric = 0
+      + min_special = 0
+      + min_upper   = 0
+      + number      = false
+      + numeric     = false
+      + result      = (known after apply)
+      + special     = false
+      + upper       = false
+    }
+
+  # module.endpoint_module.azurerm_cognitive_account.openAI will be created
+  + resource "azurerm_cognitive_account" "openAI" {
+      + custom_subdomain_name              = "openai_cognitive"
+      + endpoint                           = (known after apply)
+      + id                                 = (known after apply)
+      + kind                               = "OpenAI"
+      + local_auth_enabled                 = true
+      + location                           = "centralindia"
+      + name                               = "OpenAI"
+      + outbound_network_access_restricted = false
+      + primary_access_key                 = (sensitive value)
+      + public_network_access_enabled      = true
+      + resource_group_name                = "chirag"
+      + secondary_access_key               = (sensitive value)
+      + sku_name                           = "S0"
+    }
+
+  # module.endpoint_module.azurerm_cognitive_deployment.openAI_cognitive_deployement will be created
+  + resource "azurerm_cognitive_deployment" "openAI_cognitive_deployement" {
+      + cognitive_account_id   = (known after apply)
+      + id                     = (known after apply)
+      + name                   = "cg_deployment_01"
+      + version_upgrade_option = "OnceNewDefaultVersionAvailable"
+
+      + model {
+          + format  = "OpenAI"
+          + name    = "gpt-35-turbo"
+          + version = "0301"
+        }
+
+      + scale {
+          + capacity = 1
+          + type     = "Standard"
+        }
+    }
+
+Plan: 6 to add, 0 to change, 0 to destroy.
